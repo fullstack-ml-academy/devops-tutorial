@@ -1,20 +1,15 @@
-from flask import Flask, Response, request
-from flask_cors import CORS
 import os
+
+from flask import Flask, Response
+from flask_cors import CORS
 import pandas as pd
-import pickle
 
 app = Flask(__name__)
 
 CORS(app)
 
-# load training data
-training_data = pd.read_csv(os.path.join("data", "auto-mpg.csv"))
 
-# load model
-file_to_open = open(os.path.join("data", "models", "baummethoden_lr.pickle"), "rb")
-trained_model = pickle.load(file_to_open)
-file_to_open.close()
+training_data = pd.read_csv(os.path.join("data", "auto-mpg.csv"))
 
 
 @app.route("/", methods=["GET"])
