@@ -1,0 +1,20 @@
+name: model-training
+on: [push]
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Python und install requirements
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      - run: pip install -r requirements.txt
+      - name: Train model
+        run: python src/train.py
+      - name: Upload trained model
+        uses: actions/upload-artifact@v3
+        with:
+          name: regressor_mpg.pickle
+          path: data/models/regressor_mpg.pickle
