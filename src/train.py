@@ -1,10 +1,11 @@
 import os
+
 import pandas as pd
-from sklearn.tree import DecisionTreeRegressor
 import pickle
+from sklearn.tree import DecisionTreeRegressor
 
 # Einlesen der CSV Datei
-data = pd.read_csv("data/auto-mpg.csv", sep=";")
+data = pd.read_csv(os.path.join("data", "auto-mpg.csv"), sep=";")
 
 # Zielvariable bestimmen
 y = data["mpg"]
