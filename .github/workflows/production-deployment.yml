@@ -21,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.9"
+          python-version: "3.10"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -42,6 +42,10 @@ jobs:
           git add --force data/models/regressor_mpg.pickle
           git commit -m "[CI] update trained model" || echo "No changes to commit"
           git push --set-upstream origin heroku
+
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.13.15
