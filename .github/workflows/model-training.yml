@@ -6,13 +6,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
       - name: Setup Python und install requirements
         uses: actions/setup-python@v4
         with:
           python-version: "3.8"
       - run: pip install -r requirements.txt
+
       - name: Train model
         run: python src/train.py
+
       - name: Upload trained model
         uses: actions/upload-artifact@v4
         with:
